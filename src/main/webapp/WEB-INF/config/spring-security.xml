@@ -1,0 +1,35 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+	
+	<http pattern="/static/**" security="none" />
+	<http pattern="/IMAGES/**" security="none" />
+	<http pattern="/VIDEO/**" security="none" />
+	<!-- <http pattern="/*.json" security="none" /> -->
+	<http auto-config="false"  use-expressions="true">
+	<access-denied-handler error-page="/access-denied"/>
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/*.json" access="permitAll" />
+		<intercept-url pattern="/home.htm" access="permitAll" />
+		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<intercept-url pattern="/login.htm" access="isAnonymous()" />
+		
+		
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		 <!-- <form-login authentication-failure-url="/home.htm?error=true" default-target-url="/dashboard.htm" login-page="/home.htm" 
+            authentication-success-handler-ref="myAuthenticationSuccessHandler"/> --> 
+         <form-login authentication-failure-handler-ref="p2pAuthenticationFailureHandler" default-target-url="/dashboard.htm" login-page="/home.htm" 
+            authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
+		<logout logout-success-url="/" invalidate-session="true" logout-url="/logout.htm" />
+		<session-management>
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/home.htm"/>
+		</session-management>
+	</http>
+	 
+	<authentication-manager>
+		<authentication-provider ref="p2pCustomAuthenticationProvider" />
+	</authentication-manager>
+</beans:beans>
