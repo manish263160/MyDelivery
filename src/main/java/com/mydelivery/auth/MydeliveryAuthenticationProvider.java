@@ -23,8 +23,8 @@ import com.mydelivery.service.UserService;
 
  *
  */
-@Component("p2pCustomAuthenticationProvider")
-public class P2PAuthenticationProvider implements AuthenticationProvider {
+@Component("myDeliveryAuthenticationProvider")
+public class MydeliveryAuthenticationProvider implements AuthenticationProvider {
 
 	private static MessageLog logger = MessageLog.getLoggerInstance();
 	
@@ -35,8 +35,8 @@ public class P2PAuthenticationProvider implements AuthenticationProvider {
 	 */
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		try {
-			logger.println(IMessage.DEBUG, "P2PAuthenticationProvider.authenticate() authentication.getPrincipal(): " + authentication.getPrincipal());
-			logger.println(IMessage.DEBUG, "P2PAuthenticationProvider.authenticate() authentication.getCredentials(): " + authentication.getCredentials());
+			logger.println(IMessage.DEBUG, "MydeliveryAuthenticationProvider.authenticate() authentication.getPrincipal(): " + authentication.getPrincipal());
+			logger.println(IMessage.DEBUG, "MydeliveryAuthenticationProvider.authenticate() authentication.getCredentials(): " + authentication.getCredentials());
 			
 			String userName = authentication.getPrincipal().toString();
 			String password = authentication.getCredentials().toString();
@@ -58,7 +58,7 @@ public class P2PAuthenticationProvider implements AuthenticationProvider {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, null, null);
 			return token;
 		} catch (Exception e) {
-			logger.println(IMessage.ERROR, "Error in P2PAuthenticationProvider.authenticate()", e);
+			logger.println(IMessage.ERROR, "Error in MydeliveryAuthenticationProvider.authenticate()", e);
 			throw new AuthenticationServiceException(e.getMessage());
 		}
 	}

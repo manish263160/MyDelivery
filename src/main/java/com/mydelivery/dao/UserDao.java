@@ -4,5 +4,9 @@ import com.mydelivery.models.User;
 
 public interface UserDao {
 
-	User userLogin(String email, String password);
+	User validateUser(String email, String password);
+
+	User checkUserByEmail(String email);
+
+	void insertUser(User user);
 }

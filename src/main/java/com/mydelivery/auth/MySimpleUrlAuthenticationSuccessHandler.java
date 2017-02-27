@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -22,12 +24,14 @@ import org.springframework.stereotype.Component;
 
 import com.mydelivery.logging.IMessage;
 import com.mydelivery.logging.MessageLog;
+import com.mydelivery.models.User;
 import com.mydelivery.service.UserService;
+import com.mydelivery.utils.GenUtilitis;
 
 @Component("myAuthenticationSuccessHandler")
 public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler{
 	private static final MessageLog LOGGER = MessageLog.getLoggerInstance();
-	private static final String CLASS_NAME= "MySimpleUrlAuthenticationSuccessHandler";
+	private static final String CLASS_NAME= "MySimpleUrlAuthenticationSuccessHandler.";
 	 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 //    @Autowired SocialLoginService socialloginservice;
@@ -47,10 +51,10 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         	LOGGER.println(IMessage.INFO, CLASS_NAME + "handle():: Response has already been committed. Unable to redirect to " + targetUrl);
             return;
         }
-       /* Map<String, List<String>> params = getQueryParams(targetUrl);
+        Map<String, List<String>> params = getQueryParams(targetUrl);
         LOGGER.println(IMessage.INFO, "param::::::::::::::::::"+params);
-        */
-        //response.sendRedirect(targetUrl);
+        
+        response.sendRedirect(targetUrl);
         redirectStrategy.sendRedirect(request, response, targetUrl);
         
         
@@ -58,11 +62,11 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
  
     /** Builds the target URL according to the logic defined in the main class Javadoc. */
     protected String determineTargetUrl(HttpServletRequest request, Authentication authentication) {
-        /*boolean isUser = false;
+       boolean isUser = false;
         boolean isAdmin = false;
-        //*/LOGGER.println(IMessage.INFO, "inside the target URL1"+request.getParameter("targetUrl")+","+ request.getHeader("referer"));
+        LOGGER.println(IMessage.INFO, "inside the target URL1"+request.getParameter("targetUrl")+","+ request.getHeader("referer"));
         String targetUrl = request.getParameter("targetUrl");
-        /*Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
                 isUser = true;
@@ -71,7 +75,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
                 isAdmin = true;
                 break;
             }
-        }*/
+        
         
         if(targetUrl!=null && targetUrl.equalsIgnoreCase("default")){
         	return request.getHeader("referer");
@@ -80,29 +84,12 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         	return targetUrl;
         }
         else {
-        	/*User user=GenUtilitis.getLoggedInUser();
-        	String getProvider=socialloginservice.getUserLoginProvider(user.getUserId());
-        	String returnStrng="";
-        	if(getProvider.equals("local")){
-        	
-        		returnStrng= "/dashboard.htm";
-        	}else{
-        		Map<Long,Long> map=userservice.getAllUserBelongs(user.getUserId());
-        		if(map !=null && !map.isEmpty()){
-        			returnStrng="/dashboard.htm";
-        		}else{
-        			returnStrng="/belongsHtml.htm";
-        		}
-        	}*/
-        	return "/dashboard.htm";
+        	User user=GenUtilitis.getLoggedInUser();
+//      
         }
-        /*if (isUser) {
-            return "/dashboard.htm";
-        } else if (isAdmin) {
-            return "/dashboard.htm";
-        } else {
-            throw new IllegalStateException();
-        }*/
+        }
+        return "/dashboard.htm";
+        
     }
  
     protected void clearAuthenticationAttributes(HttpServletRequest request) {

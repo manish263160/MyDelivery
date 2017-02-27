@@ -16,12 +16,15 @@
 		<intercept-url pattern="/home.htm" access="permitAll" />
 		<intercept-url pattern="/index.jsp" access="permitAll" />
 		<intercept-url pattern="/login.htm" access="isAnonymous()" />
+		<intercept-url pattern="/register.htm" access="isAnonymous()" />
+		<intercept-url pattern="/registration.htm" access="isAnonymous()" />
+		
 		
 		
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		 <!-- <form-login authentication-failure-url="/home.htm?error=true" default-target-url="/dashboard.htm" login-page="/home.htm" 
             authentication-success-handler-ref="myAuthenticationSuccessHandler"/> --> 
-         <form-login authentication-failure-handler-ref="p2pAuthenticationFailureHandler" default-target-url="/dashboard.htm" login-page="/home.htm" 
+         <form-login authentication-failure-handler-ref="myDeliveryAuthenticationFailureHandler" default-target-url="/dashboard.htm" login-page="/login.htm" 
             authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
 		<logout logout-success-url="/" invalidate-session="true" logout-url="/logout.htm" />
 		<session-management>
@@ -30,6 +33,6 @@
 	</http>
 	 
 	<authentication-manager>
-		<authentication-provider ref="p2pCustomAuthenticationProvider" />
+		<authentication-provider ref="myDeliveryAuthenticationProvider" />
 	</authentication-manager>
 </beans:beans>

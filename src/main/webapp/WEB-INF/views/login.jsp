@@ -4,46 +4,20 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="msapplication-tap-highlight" content="no">
+<head>  
     <title>Login Page</title>
 
-  <!-- Favicons-->
-  <link rel="icon" href="static/images/favicon/delivery_logo-32x32.png" sizes="32x32">
-  <!-- Favicons-->
-  <link rel="apple-touch-icon-precomposed" href="static/images/favicon/delivery_logo-151x152.png">
-  <!-- For iPhone -->
-  <meta name="msapplication-TileColor" content="#00bcd4">
-  <meta name="msapplication-TileImage" content="static/images/favicon/delivery_logo-151x152.png">
-  <!-- For Windows Phone -->
-
-
-  <!-- CORE CSS-->
-  
-  <link href="static/lib/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="static/lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- Custome CSS-->    
-    <link href="static/lib/css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- CSS style Horizontal Nav (Layout 03)-->    
-    <link href="static/lib/css/style-horizontal.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="static/lib/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
-
-  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-  <link href="static/lib/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="static/lib/css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-  
+<jsp:include page="includes/include_css.jsp"></jsp:include>
+   
 </head>
 
-<body class="cyan">
+<body class="#d81b60 pink">
   <!-- Start Page Loading -->
-  <div id="loader-wrapper">
+ <!--  <div id="loader-wrapper">
       <div id="loader"></div>        
       <div class="loader-section section-left"></div>
       <div class="loader-section section-right"></div>
-  </div>
+  </div> -->
   <!-- End Page Loading -->
 
 
@@ -85,35 +59,17 @@
         </div>
         <div class="row">
           <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
+            <p class="margin medium-small"><a href="register.htm">Register Now!</a></p>
           </div>
           <div class="input-field col s6 m6 l6">
-              <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>
+              <p class="margin right-align medium-small"><a href="forgotpassword.htm">Forgot password ?</a></p>
           </div>          
         </div>
 
       </form>
     </div>
   </div>
-
-
-
-  <!-- ================================================
-    Scripts
-    ================================================ -->
-
-  <!-- jQuery Library -->
-  <script type="text/javascript" src="static/lib/js/jquery-1.11.2.min.js"></script>
-  <!--materialize js-->
-  <script type="text/javascript" src="static/lib/js/materialize.js"></script>
-  <!--prism-->
-  <script type="text/javascript" src="static/lib/js/prism.js"></script>
-  <!--scrollbar-->
-  <script type="text/javascript" src="static/lib/js/perfect-scrollbar.min.js"></script>
-
-  <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-  <script type="text/javascript" src="static/lib/js/plugins.js"></script>
-
+<jsp:include page="includes/include_js.jsp" />
 </body>
 
 </html>

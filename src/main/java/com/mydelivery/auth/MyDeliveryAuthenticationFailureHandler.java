@@ -22,8 +22,8 @@ import com.mydelivery.logging.MessageLog;
  * @author manishm
  *
  */
-@Component("p2pAuthenticationFailureHandler")
-public class P2PAuthenticationFailureHandler implements AuthenticationFailureHandler {
+@Component("myDeliveryAuthenticationFailureHandler")
+public class MyDeliveryAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
 	private static final MessageLog LOGGER = MessageLog.getLoggerInstance();
 	private static final String CLASS_NAME = "P2PAuthenticationFailureHandler";

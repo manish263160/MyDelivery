@@ -17,13 +17,15 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = -6130270477630445783L;
 
-	private Integer userId;
+	private Long userId;
 
-	private Integer userType;
+	private Long userType;
 	
 	private String email;
 		
 	private String password;
+	
+	private String userImage;
 	
 	private String mobileNo;
 
@@ -39,23 +41,22 @@ public class User implements Serializable{
 	
 	private String modifiedBy;
 
-	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
-	
 
-	public int getUserId() {
+
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public int getUserType() {
+	public Long getUserType() {
 		return userType;
 	}
 
-	public void setUserType(int userType) {
+	public void setUserType(Long userType) {
 		this.userType = userType;
 	}
 
@@ -115,13 +116,7 @@ public class User implements Serializable{
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Set<UserProfile> getUserProfiles() {
-		return userProfiles;
-	}
-
-	public void setUserProfiles(Set<UserProfile> userProfiles) {
-		this.userProfiles = userProfiles;
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -179,6 +174,14 @@ public class User implements Serializable{
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	public String getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
 	}
 
 
